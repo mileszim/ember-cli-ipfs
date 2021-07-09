@@ -1,10 +1,18 @@
 'use strict';
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 module.exports = function (defaults) {
   let app = new EmberAddon(defaults, {
-    // Add options here
+    autoImport: {
+      webpack: {
+        node: {
+          global: true,
+        },
+        plugins: [new NodePolyfillPlugin()],
+      },
+    },
   });
 
   /*
